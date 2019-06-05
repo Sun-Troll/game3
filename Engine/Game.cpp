@@ -38,8 +38,35 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
+	bool right = false;
+	bool left = false;
+	bool down = false;
+	bool up = false;
+	if (wnd.kbd.KeyIsPressed('D'))
+	{
+		right = true;
+	}
+	if (wnd.kbd.KeyIsPressed('A'))
+	{
+		left = true;
+	}
+	if (wnd.kbd.KeyIsPressed('S'))
+	{
+		down = true;
+	}
+	if (wnd.kbd.KeyIsPressed('W'))
+	{
+		up = true;
+	}
+	player0.Move(right, left, down, up);
+	player0.ClampScreen();
 }
 
 void Game::ComposeFrame()
 {
+	gfx.DrawRect(0, Graphics::ScreenHeight - 2, Graphics::ScreenWidth, Graphics::ScreenHeight, Colors::Red);
+	gfx.DrawRect(0, 100, Graphics::ScreenWidth, 102, Colors::Red);
+	gfx.DrawRect(0, 102, 2, Graphics::ScreenHeight - 2, Colors::Red);
+	gfx.DrawRect(Graphics::ScreenWidth - 2, 102, Graphics::ScreenWidth, Graphics::ScreenHeight - 2, Colors::Red);
+	player0.Draw(gfx);
 }
