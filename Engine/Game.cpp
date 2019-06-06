@@ -43,6 +43,7 @@ void Game::UpdateModel()
 	bool left = false;
 	bool down = false;
 	bool up = false;
+	bool jump = false;
 	if (wnd.kbd.KeyIsPressed('D'))
 	{
 		right = true;
@@ -59,7 +60,11 @@ void Game::UpdateModel()
 	{
 		up = true;
 	}
-	player0.Move(tickTime, right, left, down, up);
+	if (wnd.kbd.KeyIsPressed(VK_SPACE))
+	{
+		jump = true;
+	}
+	player0.Move(tickTime, right, left, down, up, jump);
 	player0.ClampScreen();
 }
 
