@@ -6,12 +6,12 @@
 class Player
 {
 public:
-	void Move(bool right, bool left, bool down, bool up);
+	void Move(float tick_time, bool right, bool left, bool down, bool up);
 	void ClampScreen();
 	void Draw(Graphics& gfx) const;
 private:
-	static constexpr float acc = 0.2f;
-	static constexpr float drag = 0.95f;
+	static constexpr float acc = 12.0f;
+	static constexpr float drag = 3.0f;
 	static constexpr float bounce = -0.5f;
 	Color c{ 255, 255, 255 };
 	static constexpr int width = 20;

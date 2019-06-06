@@ -1,8 +1,8 @@
 #include "Player.h"
 
-void Player::Move(bool right, bool left, bool down, bool up)
+void Player::Move(float tick_time, bool right, bool left, bool down, bool up)
 {
-	Vec2 vAcc(0, 0);
+	Vec2 vAcc(0.0f, 0.0f);
 	if (right)
 	{
 		++vAcc.x;
@@ -22,10 +22,10 @@ void Player::Move(bool right, bool left, bool down, bool up)
 			--vAcc.y;
 		}
 	}
-	vel += vAcc.GetNormalized() * acc;
-	vel *= drag;
+	vel += vAcc.GetNormalized() * acc * tick_time;
+	vel -= vel * drag * tick_time;
 	
-	pos += vel;
+	pos += vel * tick_time * 60;
 }
 
 void Player::ClampScreen()

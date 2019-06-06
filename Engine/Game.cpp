@@ -38,6 +38,7 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
+	float tickTime = ft.TimePassed();
 	bool right = false;
 	bool left = false;
 	bool down = false;
@@ -58,7 +59,7 @@ void Game::UpdateModel()
 	{
 		up = true;
 	}
-	player0.Move(right, left, down, up);
+	player0.Move(tickTime, right, left, down, up);
 	player0.ClampScreen();
 }
 
