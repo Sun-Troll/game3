@@ -10,12 +10,12 @@ public:
 	void ClampScreen();
 	void Draw(Graphics& gfx) const;
 private:
-	static constexpr float acc = 12.0f;
-	static constexpr float drag = 2.0f;
-	static constexpr float bounce = -0.5f;
+	static constexpr float acc = 15.0f;
+	static constexpr float drag = 1.0f;
+	static constexpr float bounce = -0.6f;
 	float jumpVal = 0.0f;
-	static constexpr float jumpCharge = 25.0f;
-	static constexpr float jumpMax = 50.0f;
+	static constexpr float jumpCharge = 20.0f;
+	static constexpr float jumpMax = 40.0f;
 	static constexpr float gravity = 10.0f;
 	Color c{ 255, 255, 255 };
 	static constexpr int width = 40;
