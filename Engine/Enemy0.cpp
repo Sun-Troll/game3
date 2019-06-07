@@ -1,7 +1,7 @@
-#include "Player.h"
+#include "Enemy0.h"
 #include <algorithm>
 
-void Player::Move(float tick_time, bool right, bool left, bool down, bool up, bool jump)
+void Enemy0::Move(float tick_time, bool right, bool left, bool down, bool up, bool jump)
 {
 	Vec2 vAcc(0.0f, 0.0f);
 	if (right)
@@ -39,11 +39,11 @@ void Player::Move(float tick_time, bool right, bool left, bool down, bool up, bo
 	}
 	vel += vAcc;
 	vel *= pow(drag, tick_time);
-	
+
 	pos += vel * tick_time * 60.0f;
 }
 
-void Player::ClampScreen()
+void Enemy0::ClampScreen()
 {
 	if (pos.x < 2.0f)
 	{
@@ -67,17 +67,19 @@ void Player::ClampScreen()
 	}
 }
 
-void Player::Draw(Graphics& gfx) const
+void Enemy0::AI(const Vec2& target_pos, const Vec2& target_vel, bool& right, bool& left)
+{
+	if (pos.x < target_pos.x)
+	{
+		right = true;
+	}
+	if (pos.x > target_pos.x)
+	{
+		left = true;
+	}
+}
+
+void Enemy0::Draw(Graphics & gfx) const
 {
 	gfx.DrawRectDim(int(pos.x), int(pos.y), width, height, c);
-}
-
-const Vec2& Player::GetPos() const
-{
-	return pos;
-}
-
-const Vec2 & Player::GetVel() const
-{
-	return vel;
 }

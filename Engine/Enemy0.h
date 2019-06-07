@@ -3,26 +3,25 @@
 #include "Graphics.h"
 #include "Vec2.h"
 
-class Player
+class Enemy0
 {
 public:
 	void Move(float tick_time, bool right, bool left, bool down, bool up, bool jump);
 	void ClampScreen();
+	void AI(const Vec2& target_pos, const Vec2& target_vel, bool& right, bool& left);
 	void Draw(Graphics& gfx) const;
-	const Vec2& GetPos() const;
-	const Vec2& GetVel() const;
 private:
-	static constexpr float acc = 14.0f;
+	static constexpr float acc = 8.0f;
 	static constexpr float drag = 0.1f;
 	static constexpr float bounce = -0.6f;
 	float jumpVal = 0.0f;
 	static constexpr float jumpCharge = 20.0f;
 	static constexpr float jumpMax = 40.0f;
 	static constexpr float gravity = 20.0f;
-	Color c{ 255, 255, 255 };
-	static constexpr int width = 40;
-	static constexpr int height = 40;
-	Vec2 pos{ float((Graphics::ScreenWidth - width) / 2), float(Graphics::ScreenHeight - height - 2) };
+	Color c{ 255, 255, 0 };
+	static constexpr int width = 50;
+	static constexpr int height = 30;
+	Vec2 pos{ float((Graphics::ScreenWidth - width) / 2), 102.0f };
 	Vec2 vel{ 0.0f, 0.0f };
-	bool fly = false;
+	bool fly = true;
 };

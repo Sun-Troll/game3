@@ -66,6 +66,17 @@ void Game::UpdateModel()
 	}
 	player0.Move(tickTime, right, left, down, up, jump);
 	player0.ClampScreen();
+	for (int i = 0; i < enemy0Num; ++i)
+	{
+		right = false;
+		left = false;
+		down = false;
+		up = false;
+		jump = false;
+		enemy0[i].AI(player0.GetPos(), player0.GetVel(), right, left);
+		enemy0[i].Move(tickTime, right, left, down, up, jump);
+		enemy0[i].ClampScreen();
+	}
 }
 
 void Game::ComposeFrame()
@@ -74,5 +85,9 @@ void Game::ComposeFrame()
 	gfx.DrawRect(0, 100, Graphics::ScreenWidth, 102, Colors::Red);
 	gfx.DrawRect(0, 102, 2, Graphics::ScreenHeight - 2, Colors::Red);
 	gfx.DrawRect(Graphics::ScreenWidth - 2, 102, Graphics::ScreenWidth, Graphics::ScreenHeight - 2, Colors::Red);
+	for (int i = 0; i < enemy0Num; ++i)
+	{
+		enemy0[i].Draw(gfx);
+	}
 	player0.Draw(gfx);
 }

@@ -25,6 +25,7 @@
 #include "Graphics.h"
 #include "FrameTimer.h"
 #include "Player.h"
+#include "Enemy0.h"
 
 class Game
 {
@@ -46,5 +47,8 @@ private:
 	/*  User Variables              */
 	FrameTimer ft;
 	Player player0;
+	static constexpr int enemy0NumMax = 1000;
+	static constexpr int enemy0Num = 1;
+	Enemy0 enemy0[enemy0NumMax];
 	/********************************/
 };
