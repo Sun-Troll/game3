@@ -38,7 +38,7 @@ void Player::Move(float tick_time, bool right, bool left, bool down, bool up, bo
 		vAcc.y += gravity * tick_time;
 	}
 	vel += vAcc;
-	vel -= vel * std::min(1.0f, drag * tick_time);
+	vel *= pow(drag, tick_time);
 	
 	pos += vel * tick_time * 60.0f;
 }
