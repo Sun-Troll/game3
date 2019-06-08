@@ -69,11 +69,11 @@ void Enemy0::ClampScreen()
 
 void Enemy0::AI(const Vec2& target_pos, const Vec2& target_vel, bool& right, bool& left)
 {
-	if (pos.x < target_pos.x)
+	if (pos.x < target_pos.x + target_vel.x * 6 - 2)
 	{
 		right = true;
 	}
-	if (pos.x > target_pos.x)
+	if (pos.x > target_pos.x + target_vel.x * 6 + 2)
 	{
 		left = true;
 	}
