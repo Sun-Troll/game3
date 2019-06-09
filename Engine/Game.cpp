@@ -38,69 +38,76 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
-	float tickTime = ft.TimePassed();
-	bool right = false;
-	bool left = false;
-	bool down = false;
-	bool up = false;
-	bool jump = false;
-	bool attack = false;
-	if (wnd.kbd.KeyIsPressed('D'))
+	if (!gameOver)
 	{
-		right = true;
-	}
-	if (wnd.kbd.KeyIsPressed('A'))
-	{
-		left = true;
-	}
-	if (wnd.kbd.KeyIsPressed('S'))
-	{
-		down = true;
-	}
-	if (wnd.kbd.KeyIsPressed('W'))
-	{
-		up = true;
-	}
-	if (wnd.kbd.KeyIsPressed(VK_SPACE))
-	{
-		jump = true;
-	}
-	player0.Move(tickTime, right, left, down, up, jump);
-	player0.ClampScreen();
-	for (int i = 0; i < enemy0Num; ++i)
-	{
-		right = false;
-		left = false;
-		down = false;
-		up = false;
-		jump = false;
-		attack = false;
-		enemy0[i].AI(player0.GetMiddleX(), player0.GetVel(), right, left, attack);
-		enemy0[i].Move(tickTime, right, left, down, up, jump);
-		enemy0[i].ClampScreen();
-		if (attack)
+		float tickTime = ft.TimePassed();
+		bool right = false;
+		bool left = false;
+		bool down = false;
+		bool up = false;
+		bool jump = false;
+		bool attack = false;
+		if (wnd.kbd.KeyIsPressed('D'))
 		{
-			bomb[bombCurrent].Spawn(enemy0[i].GetMiddleX(), enemy0[i].GetVel());
-			if (bombCurrent < bombNumMax)
+			right = true;
+		}
+		if (wnd.kbd.KeyIsPressed('A'))
+		{
+			left = true;
+		}
+		if (wnd.kbd.KeyIsPressed('S'))
+		{
+			down = true;
+		}
+		if (wnd.kbd.KeyIsPressed('W'))
+		{
+			up = true;
+		}
+		if (wnd.kbd.KeyIsPressed(VK_SPACE))
+		{
+			jump = true;
+		}
+		player0.Move(tickTime, right, left, down, up, jump);
+		player0.ClampScreen();
+		for (int i = 0; i < enemy0Num; ++i)
+		{
+			right = false;
+			left = false;
+			down = false;
+			up = false;
+			jump = false;
+			attack = false;
+			enemy0[i].AI(player0.GetMiddleX(), player0.GetVel(), right, left, attack);
+			enemy0[i].Move(tickTime, right, left, down, up, jump);
+			enemy0[i].ClampScreen();
+			if (attack)
 			{
-				++bombCurrent;
-			}
-			else
-			{
-				bombCurrent = 0;
+				bomb[bombCurrent].Spawn(enemy0[i].GetMiddleX(), enemy0[i].GetVel());
+				if (bombCurrent < bombNumMax)
+				{
+					++bombCurrent;
+				}
+				else
+				{
+					bombCurrent = 0;
+				}
 			}
 		}
-	}
-	for (int i = 0; i < bombNumMax; ++i)
-	{
-		if (bomb[i].GetSpawned())
+		for (int i = 0; i < bombNumMax; ++i)
 		{
-			bomb[i].Move(tickTime);
-			bomb[i].ClampScreen();
-			if (bomb[i].PlayerHit(player0.GetPos(), player0.GetBottomRight()))
+			if (bomb[i].GetSpawned())
 			{
-				player0.ReciveDamage(bomb[i].GetDamage());
+				bomb[i].Move(tickTime);
+				bomb[i].ClampScreen();
+				if (bomb[i].PlayerHit(player0.GetPos(), player0.GetBottomRight()))
+				{
+					player0.ReciveDamage(bomb[i].GetDamage());
+				}
 			}
+		}
+		if (player0.GetHp() <= 0)
+		{
+			gameOver = true;
 		}
 	}
 }

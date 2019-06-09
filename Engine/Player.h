@@ -15,6 +15,7 @@ public:
 	const Vec2& GetVel() const;
 	Vec2 GetMiddleX() const;
 	Vec2 GetBottomRight() const;
+	int GetHp() const;
 private:
 	static constexpr int hpMax = 10000000;
 	int hp = hpMax;

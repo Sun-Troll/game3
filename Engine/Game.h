@@ -46,6 +46,7 @@ private:
 	Graphics gfx;
 	/********************************/
 	/*  User Variables              */
+	bool gameOver = false;
 	FrameTimer ft;
 	Player player0;
 	static constexpr int enemy0NumMax = 100;

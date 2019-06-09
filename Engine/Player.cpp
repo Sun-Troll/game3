@@ -102,3 +102,8 @@ Vec2 Player::GetBottomRight() const
 {
 	return Vec2(pos.x + width, pos.y + height);
 }
+
+int Player::GetHp() const
+{
+	return hp;
+}
