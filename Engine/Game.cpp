@@ -44,6 +44,7 @@ void Game::UpdateModel()
 	bool down = false;
 	bool up = false;
 	bool jump = false;
+	bool attack = false;
 	if (wnd.kbd.KeyIsPressed('D'))
 	{
 		right = true;
@@ -73,7 +74,8 @@ void Game::UpdateModel()
 		down = false;
 		up = false;
 		jump = false;
-		enemy0[i].AI(player0.GetPos(), player0.GetVel(), right, left);
+		attack = false;
+		enemy0[i].AI(player0.GetPos(), player0.GetVel(), right, left, attack);
 		enemy0[i].Move(tickTime, right, left, down, up, jump);
 		enemy0[i].ClampScreen();
 	}

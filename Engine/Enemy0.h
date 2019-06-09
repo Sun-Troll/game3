@@ -8,8 +8,10 @@ class Enemy0
 public:
 	void Move(float tick_time, bool right, bool left, bool down, bool up, bool jump);
 	void ClampScreen();
-	void AI(const Vec2& target_pos, const Vec2& target_vel, bool& right, bool& left);
+	void AI(const Vec2& target_pos, const Vec2& target_vel, bool& right, bool& left, bool& attack);
 	void Draw(Graphics& gfx) const;
+	const Vec2& GetPos() const;
+	const Vec2& GetVel() const;
 private:
 	static constexpr float acc = 8.0f;
 	static constexpr float drag = 0.1f;

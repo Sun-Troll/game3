@@ -67,7 +67,7 @@ void Enemy0::ClampScreen()
 	}
 }
 
-void Enemy0::AI(const Vec2& target_pos, const Vec2& target_vel, bool& right, bool& left)
+void Enemy0::AI(const Vec2& target_pos, const Vec2& target_vel, bool& right, bool& left, bool& attack)
 {
 	if (pos.x < target_pos.x + target_vel.x * 6 - 2)
 	{
@@ -77,9 +77,23 @@ void Enemy0::AI(const Vec2& target_pos, const Vec2& target_vel, bool& right, boo
 	{
 		left = true;
 	}
+	if (pos.x > target_pos.x + target_vel.x * 6 - 2 && pos.x < target_pos.x + target_vel.x * 6 + 2)
+	{
+		attack = true;
+	}
 }
 
-void Enemy0::Draw(Graphics & gfx) const
+void Enemy0::Draw(Graphics& gfx) const
 {
 	gfx.DrawRectDim(int(pos.x), int(pos.y), width, height, c);
+}
+
+const Vec2 & Enemy0::GetPos() const
+{
+	return pos;
+}
+
+const Vec2 & Enemy0::GetVel() const
+{
+	return vel;
 }
