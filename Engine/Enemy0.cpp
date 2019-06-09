@@ -77,7 +77,8 @@ void Enemy0::AI(const Vec2& target_pos, const Vec2& target_vel, bool& right, boo
 	{
 		left = true;
 	}
-	if (pos.x + width / 2.0f > target_pos.x + target_vel.x * 6.0f - 2.0f && pos.x + width / 2.0f < target_pos.x + target_vel.x * 6.0f + 2.0f)
+	if (pos.x + width / 2.0f > target_pos.x + target_vel.x * 6.0f - 20.0f &&
+		pos.x + width / 2.0f < target_pos.x + target_vel.x * 6.0f + 20.0f)
 	{
 		attack = true;
 	}
