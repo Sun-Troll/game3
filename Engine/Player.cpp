@@ -72,6 +72,12 @@ void Player::Draw(Graphics& gfx) const
 	gfx.DrawRectDim(int(pos.x), int(pos.y), width, height, c);
 }
 
+void Player::DrawHp(Graphics& gfx) const
+{
+	gfx.DrawRectDim(50, 40, hpMax / 50000, 11, Colors::Blue);
+	gfx.DrawRectDim(50, 43, hp / 50000, 5, Colors::Green);
+}
+
 const Vec2& Player::GetPos() const
 {
 	return pos;

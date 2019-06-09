@@ -107,6 +107,7 @@ void Game::ComposeFrame()
 	gfx.DrawRect(0, 100, Graphics::ScreenWidth, 102, Colors::Red);
 	gfx.DrawRect(0, 102, 2, Graphics::ScreenHeight - 2, Colors::Red);
 	gfx.DrawRect(Graphics::ScreenWidth - 2, 102, Graphics::ScreenWidth, Graphics::ScreenHeight - 2, Colors::Red);
+	player0.DrawHp(gfx);
 	for (int i = 0; i < enemy0Num; ++i)
 	{
 		enemy0[i].Draw(gfx);

@@ -9,10 +9,13 @@ public:
 	void Move(float tick_time, bool right, bool left, bool down, bool up, bool jump);
 	void ClampScreen();
 	void Draw(Graphics& gfx) const;
+	void DrawHp(Graphics& gfx) const;
 	const Vec2& GetPos() const;
 	const Vec2& GetVel() const;
 	Vec2 GetMiddleX() const;
 private:
+	static constexpr int hpMax = 10000000;
+	int hp = hpMax;
 	static constexpr float acc = 14.0f;
 	static constexpr float drag = 0.1f;
 	static constexpr float bounce = -0.6f;
