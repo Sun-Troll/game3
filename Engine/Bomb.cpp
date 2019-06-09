@@ -13,6 +13,15 @@ void Bomb::Move(float tick_time)
 	vel *= pow(drag, tick_time);
 
 	pos += vel * tick_time * 60.0f;
+	
+	if (pos.y >= float(Graphics::ScreenHeight - height - 2))
+	{
+		timeOnGround += tick_time;
+	}
+	if (timeOnGround > maxTimeOnGround)
+	{
+		spawned = false;
+	}
 }
 
 void Bomb::ClampScreen()

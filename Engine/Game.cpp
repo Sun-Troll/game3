@@ -78,6 +78,26 @@ void Game::UpdateModel()
 		enemy0[i].AI(player0.GetPos(), player0.GetVel(), right, left, attack);
 		enemy0[i].Move(tickTime, right, left, down, up, jump);
 		enemy0[i].ClampScreen();
+		if (attack)
+		{
+			bomb[bombCurrent].Spawn(enemy0[i].GetPos(), enemy0[i].GetVel());
+			if (bombCurrent < bombNumMax)
+			{
+				++bombCurrent;
+			}
+			else
+			{
+				bombCurrent = 0;
+			}
+		}
+	}
+	for (int i = 0; i < bombNumMax; ++i)
+	{
+		if (bomb[i].GetSpawned())
+		{
+			bomb[i].Move(tickTime);
+			bomb[i].ClampScreen();
+		}
 	}
 }
 
@@ -90,6 +110,13 @@ void Game::ComposeFrame()
 	for (int i = 0; i < enemy0Num; ++i)
 	{
 		enemy0[i].Draw(gfx);
+	}
+	for (int i = 0; i < bombNumMax; ++i)
+	{
+		if (bomb[i].GetSpawned())
+		{
+			bomb[i].Draw(gfx);
+		}
 	}
 	player0.Draw(gfx);
 }
