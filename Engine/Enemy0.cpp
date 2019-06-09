@@ -100,6 +100,5 @@ const Vec2 & Enemy0::GetVel() const
 
 Vec2 Enemy0::GetMiddleX() const
 {
-	const Vec2 middleX(pos.x + width / 2.0f, pos.y);
-	return middleX;
+	return Vec2(pos.x + width / 2.0f, pos.y);
 }

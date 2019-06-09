@@ -49,6 +49,17 @@ void Bomb::ClampScreen()
 	}
 }
 
+bool Bomb::PlayerHit(const Vec2 & target_pos, const Vec2 & target_rb)
+{
+	if (pos.x < target_rb.x && pos.x + width > target_pos.x &&
+		pos.y < target_rb.y && pos.y + height > target_pos.y)
+	{
+		spawned = false;
+		return true;
+	}
+	return false;
+}
+
 void Bomb::Draw(Graphics& gfx) const
 {
 	gfx.DrawRectDim(int(pos.x), int(pos.y), width, height, c);
@@ -57,5 +68,10 @@ void Bomb::Draw(Graphics& gfx) const
 bool Bomb::GetSpawned() const
 {
 	return spawned;
+}
+
+int Bomb::GetDamage() const
+{
+	return damage;
 }
 

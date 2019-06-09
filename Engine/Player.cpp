@@ -67,6 +67,11 @@ void Player::ClampScreen()
 	}
 }
 
+void Player::ReciveDamage(int damage)
+{
+	hp -= damage;
+}
+
 void Player::Draw(Graphics& gfx) const
 {
 	gfx.DrawRectDim(int(pos.x), int(pos.y), width, height, c);
@@ -90,6 +95,10 @@ const Vec2 & Player::GetVel() const
 
 Vec2 Player::GetMiddleX() const
 {
-	const Vec2 middleX(pos.x + width / 2.0f, pos.y);
-	return middleX;
+	return Vec2(pos.x + width / 2.0f, pos.y);
+}
+
+Vec2 Player::GetBottomRight() const
+{
+	return Vec2(pos.x + width, pos.y + height);
 }

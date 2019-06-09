@@ -97,6 +97,10 @@ void Game::UpdateModel()
 		{
 			bomb[i].Move(tickTime);
 			bomb[i].ClampScreen();
+			if (bomb[i].PlayerHit(player0.GetPos(), player0.GetBottomRight()))
+			{
+				player0.ReciveDamage(bomb[i].GetDamage());
+			}
 		}
 	}
 }

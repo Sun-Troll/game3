@@ -8,11 +8,13 @@ class Player
 public:
 	void Move(float tick_time, bool right, bool left, bool down, bool up, bool jump);
 	void ClampScreen();
+	void ReciveDamage(int damage);
 	void Draw(Graphics& gfx) const;
 	void DrawHp(Graphics& gfx) const;
 	const Vec2& GetPos() const;
 	const Vec2& GetVel() const;
 	Vec2 GetMiddleX() const;
+	Vec2 GetBottomRight() const;
 private:
 	static constexpr int hpMax = 10000000;
 	int hp = hpMax;
