@@ -6,7 +6,7 @@
 class Bomb
 {
 public:
-	void Spawn(const Vec2 owner_pos, const Vec2 owner_vel);
+	void Spawn(const Vec2& owner_pos, const Vec2& owner_vel);
 	void Move(float tick_time);
 	void ClampScreen();
 	void Draw(Graphics& gfx) const;

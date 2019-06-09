@@ -75,12 +75,12 @@ void Game::UpdateModel()
 		up = false;
 		jump = false;
 		attack = false;
-		enemy0[i].AI(player0.GetPos(), player0.GetVel(), right, left, attack);
+		enemy0[i].AI(player0.GetMiddleX(), player0.GetVel(), right, left, attack);
 		enemy0[i].Move(tickTime, right, left, down, up, jump);
 		enemy0[i].ClampScreen();
 		if (attack)
 		{
-			bomb[bombCurrent].Spawn(enemy0[i].GetPos(), enemy0[i].GetVel());
+			bomb[bombCurrent].Spawn(enemy0[i].GetMiddleX(), enemy0[i].GetVel());
 			if (bombCurrent < bombNumMax)
 			{
 				++bombCurrent;

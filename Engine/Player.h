@@ -11,6 +11,7 @@ public:
 	void Draw(Graphics& gfx) const;
 	const Vec2& GetPos() const;
 	const Vec2& GetVel() const;
+	Vec2 GetMiddleX() const;
 private:
 	static constexpr float acc = 14.0f;
 	static constexpr float drag = 0.1f;

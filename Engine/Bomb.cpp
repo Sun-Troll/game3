@@ -1,8 +1,9 @@
 #include "bomb.h"
 
-void Bomb::Spawn(const Vec2 owner_pos, const Vec2 owner_vel)
+void Bomb::Spawn(const Vec2& owner_pos, const Vec2& owner_vel)
 {
 	pos = owner_pos;
+	pos.x -= width / 2.0f;
 	vel = owner_vel;
 	spawned = true;
 }

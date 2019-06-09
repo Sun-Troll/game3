@@ -81,3 +81,9 @@ const Vec2 & Player::GetVel() const
 {
 	return vel;
 }
+
+Vec2 Player::GetMiddleX() const
+{
+	const Vec2 middleX(pos.x + width / 2.0f, pos.y);
+	return middleX;
+}

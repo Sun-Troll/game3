@@ -69,15 +69,15 @@ void Enemy0::ClampScreen()
 
 void Enemy0::AI(const Vec2& target_pos, const Vec2& target_vel, bool& right, bool& left, bool& attack)
 {
-	if (pos.x < target_pos.x + target_vel.x * 6 - 2)
+	if (pos.x + width / 2.0f < target_pos.x + target_vel.x * 6.0f - 2.0f)
 	{
 		right = true;
 	}
-	if (pos.x > target_pos.x + target_vel.x * 6 + 2)
+	if (pos.x + width / 2.0f > target_pos.x + target_vel.x * 6.0f + 2.0f)
 	{
 		left = true;
 	}
-	if (pos.x > target_pos.x + target_vel.x * 6 - 2 && pos.x < target_pos.x + target_vel.x * 6 + 2)
+	if (pos.x + width / 2.0f > target_pos.x + target_vel.x * 6.0f - 2.0f && pos.x + width / 2.0f < target_pos.x + target_vel.x * 6.0f + 2.0f)
 	{
 		attack = true;
 	}
@@ -96,4 +96,10 @@ const Vec2 & Enemy0::GetPos() const
 const Vec2 & Enemy0::GetVel() const
 {
 	return vel;
+}
+
+Vec2 Enemy0::GetMiddleX() const
+{
+	const Vec2 middleX(pos.x + width / 2.0f, pos.y);
+	return middleX;
 }
