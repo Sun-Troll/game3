@@ -48,6 +48,7 @@ private:
 	/********************************/
 	/*  User Variables              */
 	bool gameOver = false;
+	bool gameStarted = false;
 	FrameTimer ft;
 	Player player0;
 	static constexpr int enemy0NumMax = 100;

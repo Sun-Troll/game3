@@ -38,7 +38,7 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
-	if (!gameOver)
+	if (!gameOver && gameStarted)
 	{
 		float tickTime = ft.TimePassed();
 		bool right = false;
@@ -146,6 +146,10 @@ void Game::UpdateModel()
 		{
 			gameOver = true;
 		}
+	}
+	if (!gameStarted && wnd.kbd.KeyIsPressed(VK_RETURN))
+	{
+		gameStarted = true;
 	}
 }
 
