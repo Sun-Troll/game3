@@ -8,12 +8,18 @@ class Enemy0
 public:
 	void Move(float tick_time, bool right, bool left, bool down, bool up, bool jump);
 	void ClampScreen();
+	void ReciveDamage(int damage);
+	void ColorSet();
 	void AI(const Vec2& target_pos, const Vec2& target_vel, bool& right, bool& left, bool& attack);
 	void Draw(Graphics& gfx) const;
 	const Vec2& GetPos() const;
 	const Vec2& GetVel() const;
 	Vec2 GetMiddleX() const;
+	Vec2 GetBottomRight() const;
+	int GetHp() const;
 private:
+	static constexpr int hpMax = 10000000;
+	int hp = hpMax;
 	static constexpr float acc = 8.0f;
 	static constexpr float drag = 0.1f;
 	static constexpr float bounce = -0.6f;

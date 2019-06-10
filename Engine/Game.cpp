@@ -88,25 +88,29 @@ void Game::UpdateModel()
 		}
 		for (int i = 0; i < enemy0Num; ++i)
 		{
-			right = false;
-			left = false;
-			down = false;
-			up = false;
-			jump = false;
-			attack = false;
-			enemy0[i].AI(player0.GetMiddleX(), player0.GetVel(), right, left, attack);
-			enemy0[i].Move(tickTime, right, left, down, up, jump);
-			enemy0[i].ClampScreen();
-			if (attack)
+			if (enemy0[i].GetHp() > 0)
 			{
-				bomb[bombCurrent].Spawn(enemy0[i].GetMiddleX(), enemy0[i].GetVel());
-				if (bombCurrent < bombNumMax)
+				right = false;
+				left = false;
+				down = false;
+				up = false;
+				jump = false;
+				attack = false;
+				enemy0[i].AI(player0.GetMiddleX(), player0.GetVel(), right, left, attack);
+				enemy0[i].Move(tickTime, right, left, down, up, jump);
+				enemy0[i].ClampScreen();
+				enemy0[i].ColorSet();
+				if (attack)
 				{
-					++bombCurrent;
-				}
-				else
-				{
-					bombCurrent = 0;
+					bomb[bombCurrent].Spawn(enemy0[i].GetMiddleX(), enemy0[i].GetVel());
+					if (bombCurrent < bombNumMax)
+					{
+						++bombCurrent;
+					}
+					else
+					{
+						bombCurrent = 0;
+					}
 				}
 			}
 		}
@@ -116,7 +120,15 @@ void Game::UpdateModel()
 			{
 				bullet[i].Move(tickTime);
 				bullet[i].ClampScreen();
+				for (int ie = 0; ie < enemy0Num; ++ie)
+				{
+					if (bullet[i].EnemyHit(enemy0[ie].GetPos(), enemy0[ie].GetBottomRight(), enemy0[ie].GetHp()))
+					{
+						enemy0[ie].ReciveDamage(bullet[i].GetDamage());
+					}
+				}
 			}
+			
 		}
 		for (int i = 0; i < bombNumMax; ++i)
 		{

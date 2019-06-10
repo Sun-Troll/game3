@@ -24,10 +24,10 @@ void Bullet::ClampScreen()
 	}
 }
 
-bool Bullet::EnemyHit(const Vec2 & target_pos, const Vec2 & target_rb)
+bool Bullet::EnemyHit(const Vec2 & target_pos, const Vec2 & target_rb, int enemy_hp)
 {
 	if (pos.x < target_rb.x && pos.x + width > target_pos.x &&
-		pos.y < target_rb.y && pos.y + height > target_pos.y)
+		pos.y < target_rb.y && pos.y + height > target_pos.y && enemy_hp > 0)
 	{
 		spawned = false;
 		return true;

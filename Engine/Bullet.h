@@ -10,7 +10,7 @@ public:
 	void Spawn(const Vec2& owner_pos, const Vec2& aim_point);
 	void Move(float tick_time);
 	void ClampScreen();
-	bool EnemyHit(const Vec2& target_pos, const Vec2& target_rb);
+	bool EnemyHit(const Vec2& target_pos, const Vec2& target_rb, int enemy_hp);
 	void Draw(Graphics& gfx) const;
 	bool GetSpawned() const;
 	int GetDamage() const;

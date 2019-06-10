@@ -67,6 +67,20 @@ void Enemy0::ClampScreen()
 	}
 }
 
+void Enemy0::ReciveDamage(int damage)
+{
+	hp -= damage;
+	if (hp < 0)
+	{
+		hp = 0;
+	}
+}
+
+void Enemy0::ColorSet()
+{
+	c.SetG(hp / 39215);
+}
+
 void Enemy0::AI(const Vec2& target_pos, const Vec2& target_vel, bool& right, bool& left, bool& attack)
 {
 	if (pos.x + width / 2.0f < target_pos.x + target_vel.x * 6.0f - 2.0f)
@@ -102,4 +116,14 @@ const Vec2 & Enemy0::GetVel() const
 Vec2 Enemy0::GetMiddleX() const
 {
 	return Vec2(pos.x + width / 2.0f, pos.y);
+}
+
+Vec2 Enemy0::GetBottomRight() const
+{
+	return Vec2(pos.x + width, pos.y + height);
+}
+
+int Enemy0::GetHp() const
+{
+	return hp;
 }
