@@ -67,8 +67,25 @@ void Game::UpdateModel()
 		{
 			jump = true;
 		}
+		if (wnd.mouse.LeftIsPressed())
+		{
+			attack = true;
+		}
 		player0.Move(tickTime, right, left, down, up, jump);
 		player0.ClampScreen();
+		if (attack)
+		{
+			Vec2 mousePos(float(wnd.mouse.GetPosX()), float(wnd.mouse.GetPosY()));
+			bullet[bulletCurrent].Spawn(player0.GetMiddleX(), Vec2(float(wnd.mouse.GetPosX()), float(wnd.mouse.GetPosY())));
+			if (bulletCurrent < bulletNumMax)
+			{
+				++bulletCurrent;
+			}
+			else
+			{
+				bulletCurrent = 0;
+			}
+		}
 		for (int i = 0; i < enemy0Num; ++i)
 		{
 			right = false;
@@ -91,6 +108,14 @@ void Game::UpdateModel()
 				{
 					bombCurrent = 0;
 				}
+			}
+		}
+		for (int i = 0; i < bulletNumMax; ++i)
+		{
+			if (bullet[i].GetSpawned())
+			{
+				bullet[i].Move(tickTime);
+				bullet[i].ClampScreen();
 			}
 		}
 		for (int i = 0; i < bombNumMax; ++i)
@@ -128,6 +153,13 @@ void Game::ComposeFrame()
 		if (bomb[i].GetSpawned())
 		{
 			bomb[i].Draw(gfx);
+		}
+	}
+	for (int i = 0; i < bulletNumMax; ++i)
+	{
+		if (bullet[i].GetSpawned())
+		{
+			bullet[i].Draw(gfx);
 		}
 	}
 	player0.Draw(gfx);

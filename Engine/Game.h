@@ -27,6 +27,7 @@
 #include "Player.h"
 #include "Enemy0.h"
 #include "Bomb.h"
+#include "Bullet.h"
 
 class Game
 {
@@ -55,5 +56,8 @@ private:
 	static constexpr int  bombNumMax = 1000;
 	int bombCurrent = 0;
 	Bomb bomb[bombNumMax];
+	static constexpr int bulletNumMax = 1000;
+	int bulletCurrent = 0;
+	Bullet bullet[bulletNumMax];
 	/********************************/
 };
