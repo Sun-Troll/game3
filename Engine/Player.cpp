@@ -89,6 +89,16 @@ void Player::MpDrain(int mp_drain)
 	mp -= mp_drain;
 }
 
+void Player::attackTimeAdd(float tick_time)
+{
+	currentAttackTime += tick_time;
+}
+
+void Player::attackTimeReset()
+{
+	currentAttackTime = 0.0f;
+}
+
 void Player::Draw(Graphics& gfx) const
 {
 	gfx.DrawRectDim(int(pos.x), int(pos.y), width, height, c);
@@ -134,4 +144,14 @@ int Player::GetHp() const
 int Player::GetMp() const
 {
 	return mp;
+}
+
+float Player::GetMaxAttTime() const
+{
+	return maxAttackTime;
+}
+
+float Player::GetCurAttTime() const
+{
+	return currentAttackTime;
 }

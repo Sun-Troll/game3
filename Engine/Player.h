@@ -11,6 +11,8 @@ public:
 	void MpRegen(float tick_time);
 	void ReciveDamage(int damage);
 	void MpDrain(int mp_drain);
+	void attackTimeAdd(float tick_time);
+	void attackTimeReset();
 	void Draw(Graphics& gfx) const;
 	void DrawHp(Graphics& gfx) const;
 	void DrawMp(Graphics& gfx) const;
@@ -20,7 +22,11 @@ public:
 	Vec2 GetBottomRight() const;
 	int GetHp() const;
 	int GetMp() const;
+	float GetMaxAttTime() const;
+	float GetCurAttTime() const;
 private:
+	static constexpr float maxAttackTime = 0.1f;
+	float currentAttackTime = maxAttackTime;
 	static constexpr int hpMax = 10000000;
 	int hp = hpMax;
 	static constexpr int mpMax = 10000000;

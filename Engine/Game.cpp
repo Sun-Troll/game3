@@ -74,8 +74,10 @@ void Game::UpdateModel()
 		player0.Move(tickTime, right, left, down, up, jump);
 		player0.ClampScreen();
 		player0.MpRegen(tickTime);
-		if (attack && player0.GetMp() > 0)
+		player0.attackTimeAdd(tickTime);
+		if (attack && player0.GetMp() > 0 && player0.GetCurAttTime() >= player0.GetMaxAttTime())
 		{
+			player0.attackTimeReset();
 			player0.MpDrain(bullet[bulletCurrent].GetMpDrain());
 			Vec2 mousePos(float(wnd.mouse.GetPosX()), float(wnd.mouse.GetPosY()));
 			bullet[bulletCurrent].Spawn(player0.GetMiddleX(), Vec2(float(wnd.mouse.GetPosX()), float(wnd.mouse.GetPosY())));
@@ -102,8 +104,10 @@ void Game::UpdateModel()
 				enemy0[i].Move(tickTime, right, left, down, up, jump);
 				enemy0[i].ClampScreen();
 				enemy0[i].ColorSet();
-				if (attack)
+				enemy0[i].attackTimeAdd(tickTime);
+				if (attack && enemy0[i].GetCurAttTime() >= enemy0[i].GetMaxAttTime())
 				{
+					enemy0[i].attackTimeReset();
 					bomb[bombCurrent].Spawn(enemy0[i].GetMiddleX(), enemy0[i].GetVel());
 					if (bombCurrent < bombNumMax)
 					{

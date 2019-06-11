@@ -81,6 +81,16 @@ void Enemy0::ColorSet()
 	c.SetG(hp / 39215);
 }
 
+void Enemy0::attackTimeAdd(float tick_time)
+{
+	currentAttackTime += tick_time;
+}
+
+void Enemy0::attackTimeReset()
+{
+	currentAttackTime = 0.0f;
+}
+
 void Enemy0::AI(const Vec2& target_pos, const Vec2& target_vel, bool& right, bool& left, bool& attack)
 {
 	if (pos.x + width / 2.0f < target_pos.x + target_vel.x * 6.0f - 2.0f)
@@ -126,4 +136,14 @@ Vec2 Enemy0::GetBottomRight() const
 int Enemy0::GetHp() const
 {
 	return hp;
+}
+
+float Enemy0::GetMaxAttTime() const
+{
+	return maxAttackTime;
+}
+
+float Enemy0::GetCurAttTime() const
+{
+	return currentAttackTime;
 }

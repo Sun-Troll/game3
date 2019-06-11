@@ -26,6 +26,6 @@ private:
 	Vec2 pos{ float((Graphics::ScreenWidth - width) / 2), float(Graphics::ScreenHeight - height - 2) };
 	Vec2 vel{ 0.0f, 0.0f };
 	float velSet = 10.0f;
-	static constexpr int damage = 100000;
-	static constexpr int mpDrain = 100000;
+	static constexpr int damage = 200000;
+	static constexpr int mpDrain = 600000;
 };

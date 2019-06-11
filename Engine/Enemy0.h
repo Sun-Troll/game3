@@ -10,6 +10,8 @@ public:
 	void ClampScreen();
 	void ReciveDamage(int damage);
 	void ColorSet();
+	void attackTimeAdd(float tick_time);
+	void attackTimeReset();
 	void AI(const Vec2& target_pos, const Vec2& target_vel, bool& right, bool& left, bool& attack);
 	void Draw(Graphics& gfx) const;
 	const Vec2& GetPos() const;
@@ -17,7 +19,11 @@ public:
 	Vec2 GetMiddleX() const;
 	Vec2 GetBottomRight() const;
 	int GetHp() const;
+	float GetMaxAttTime() const;
+	float GetCurAttTime() const;
 private:
+	static constexpr float maxAttackTime = 0.05f;
+	float currentAttackTime = maxAttackTime;
 	static constexpr int hpMax = 10000000;
 	int hp = hpMax;
 	static constexpr float acc = 8.0f;
