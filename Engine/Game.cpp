@@ -73,7 +73,7 @@ void Game::UpdateModel()
 		}
 		player0.Move(tickTime, right, left, down, up, jump);
 		player0.ClampScreen();
-		player0.MpRegen();
+		player0.MpRegen(tickTime);
 		if (attack && player0.GetMp() > 0)
 		{
 			player0.MpDrain(bullet[bulletCurrent].GetMpDrain());

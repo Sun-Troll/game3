@@ -8,7 +8,7 @@ class Player
 public:
 	void Move(float tick_time, bool right, bool left, bool down, bool up, bool jump);
 	void ClampScreen();
-	void MpRegen();
+	void MpRegen(float tick_time);
 	void ReciveDamage(int damage);
 	void MpDrain(int mp_drain);
 	void Draw(Graphics& gfx) const;
@@ -25,7 +25,7 @@ private:
 	int hp = hpMax;
 	static constexpr int mpMax = 10000000;
 	int mp = mpMax;
-	static constexpr int mpRegen = 10000;
+	static constexpr float mpRegen = 1000000.0f;
 	static constexpr float acc = 14.0f;
 	static constexpr float drag = 0.1f;
 	static constexpr float bounce = -0.6f;

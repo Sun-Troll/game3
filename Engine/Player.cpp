@@ -67,9 +67,16 @@ void Player::ClampScreen()
 	}
 }
 
-void Player::MpRegen()
+void Player::MpRegen(float tick_time)
 {
-	mp += mpRegen;
+	if (mp < mpMax)
+	{
+		mp += int(mpRegen * tick_time);
+	}
+	if (mp > mpMax)
+	{
+		mp = mpMax;
+	}
 }
 
 void Player::ReciveDamage(int damage)
