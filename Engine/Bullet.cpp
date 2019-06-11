@@ -49,3 +49,8 @@ int Bullet::GetDamage() const
 {
 	return damage;
 }
+
+int Bullet::GetMpDrain() const
+{
+	return mpDrain;
+}

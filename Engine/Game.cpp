@@ -73,8 +73,10 @@ void Game::UpdateModel()
 		}
 		player0.Move(tickTime, right, left, down, up, jump);
 		player0.ClampScreen();
-		if (attack)
+		player0.MpRegen();
+		if (attack && player0.GetMp() > 0)
 		{
+			player0.MpDrain(bullet[bulletCurrent].GetMpDrain());
 			Vec2 mousePos(float(wnd.mouse.GetPosX()), float(wnd.mouse.GetPosY()));
 			bullet[bulletCurrent].Spawn(player0.GetMiddleX(), Vec2(float(wnd.mouse.GetPosX()), float(wnd.mouse.GetPosY())));
 			if (bulletCurrent < bulletNumMax)
@@ -160,6 +162,7 @@ void Game::ComposeFrame()
 	gfx.DrawRect(0, 102, 2, Graphics::ScreenHeight - 2, Colors::Red);
 	gfx.DrawRect(Graphics::ScreenWidth - 2, 102, Graphics::ScreenWidth, Graphics::ScreenHeight - 2, Colors::Red);
 	player0.DrawHp(gfx);
+	player0.DrawMp(gfx);
 	for (int i = 0; i < enemy0Num; ++i)
 	{
 		enemy0[i].Draw(gfx);

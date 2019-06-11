@@ -67,9 +67,19 @@ void Player::ClampScreen()
 	}
 }
 
+void Player::MpRegen()
+{
+	mp += mpRegen;
+}
+
 void Player::ReciveDamage(int damage)
 {
 	hp -= damage;
+}
+
+void Player::MpDrain(int mp_drain)
+{
+	mp -= mp_drain;
 }
 
 void Player::Draw(Graphics& gfx) const
@@ -81,6 +91,12 @@ void Player::DrawHp(Graphics& gfx) const
 {
 	gfx.DrawRectDim(50, 40, hpMax / 50000, 11, Colors::Blue);
 	gfx.DrawRectDim(50, 43, hp / 50000, 5, Colors::Green);
+}
+
+void Player::DrawMp(Graphics & gfx) const
+{
+	gfx.DrawRectDim(450, 40, mpMax / 50000, 11, Colors::Red);
+	gfx.DrawRectDim(450, 43, mp / 50000, 5, Colors::Yellow);
 }
 
 const Vec2& Player::GetPos() const
@@ -106,4 +122,9 @@ Vec2 Player::GetBottomRight() const
 int Player::GetHp() const
 {
 	return hp;
+}
+
+int Player::GetMp() const
+{
+	return mp;
 }

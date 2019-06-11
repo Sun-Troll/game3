@@ -8,17 +8,24 @@ class Player
 public:
 	void Move(float tick_time, bool right, bool left, bool down, bool up, bool jump);
 	void ClampScreen();
+	void MpRegen();
 	void ReciveDamage(int damage);
+	void MpDrain(int mp_drain);
 	void Draw(Graphics& gfx) const;
 	void DrawHp(Graphics& gfx) const;
+	void DrawMp(Graphics& gfx) const;
 	const Vec2& GetPos() const;
 	const Vec2& GetVel() const;
 	Vec2 GetMiddleX() const;
 	Vec2 GetBottomRight() const;
 	int GetHp() const;
+	int GetMp() const;
 private:
 	static constexpr int hpMax = 10000000;
 	int hp = hpMax;
+	static constexpr int mpMax = 10000000;
+	int mp = mpMax;
+	static constexpr int mpRegen = 10000;
 	static constexpr float acc = 14.0f;
 	static constexpr float drag = 0.1f;
 	static constexpr float bounce = -0.6f;
