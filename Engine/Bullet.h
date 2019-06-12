@@ -1,6 +1,5 @@
 #pragma once
 
-
 #include "Graphics.h"
 #include "Vec2.h"
 

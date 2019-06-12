@@ -28,7 +28,7 @@ private:
 	static constexpr int hpMax = 10000000;
 	int hp = hpMax;
 	static constexpr float acc = 8.0f;
-	static constexpr float drag = 0.1f;
+	static constexpr float drag = 0.2f;
 	static constexpr float bounce = -0.6f;
 	float jumpVal = 0.0f;
 	static constexpr float jumpCharge = 20.0f;
