@@ -89,12 +89,12 @@ void Player::MpDrain(int mp_drain)
 	mp -= mp_drain;
 }
 
-void Player::attackTimeAdd(float tick_time)
+void Player::AttackTimeAdd(float tick_time)
 {
 	currentAttackTime += tick_time;
 }
 
-void Player::attackTimeReset()
+void Player::AttackTimeReset()
 {
 	currentAttackTime = 0.0f;
 }

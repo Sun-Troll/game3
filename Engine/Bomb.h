@@ -20,7 +20,7 @@ private:
 	static constexpr float drag = 0.6f;
 	static constexpr float bounce = -0.9f;
 	static constexpr float gravity = 20.0f;
-	Color c{ 0, 255, 255 };
+	Color c{ 0, 255, 0 };
 	static constexpr int width = 20;
 	static constexpr int height = 30;
 	Vec2 pos{ float((Graphics::ScreenWidth - width) / 2), float(Graphics::ScreenHeight - height - 2) };

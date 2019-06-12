@@ -10,8 +10,9 @@ public:
 	void ClampScreen();
 	void ReciveDamage(int damage);
 	void ColorSet();
-	void attackTimeAdd(float tick_time);
-	void attackTimeReset();
+	void AttackTimeAdd(float tick_time);
+	void AttackTimeReset();
+	void NextStage();
 	void AI(const Vec2& target_pos, const Vec2& target_vel, bool& right, bool& left, bool& attack);
 	void Draw(Graphics& gfx) const;
 	const Vec2& GetPos() const;
@@ -39,4 +40,5 @@ private:
 	Vec2 pos{ float((Graphics::ScreenWidth - width) / 2), 102.0f };
 	Vec2 vel{ 0.0f, 0.0f };
 	bool fly = true;
+	int stage = 0;
 };

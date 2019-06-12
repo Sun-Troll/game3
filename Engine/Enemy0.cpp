@@ -78,17 +78,34 @@ void Enemy0::ReciveDamage(int damage)
 
 void Enemy0::ColorSet()
 {
-	c.SetG(hp / 39215);
+	if (stage == 0)
+	{
+		c.SetG(hp / 39215);
+	}
+	if (stage == 1)
+	{
+		c.SetB(hp / 78431);
+	}
 }
 
-void Enemy0::attackTimeAdd(float tick_time)
+void Enemy0::AttackTimeAdd(float tick_time)
 {
 	currentAttackTime += tick_time;
 }
 
-void Enemy0::attackTimeReset()
+void Enemy0::AttackTimeReset()
 {
 	currentAttackTime = 0.0f;
+}
+
+void Enemy0::NextStage()
+{
+	if (hp <= 0 && stage == 0)
+	{
+		++stage;
+		hp = 2 * hpMax;
+		c = Color{ 255,0,255 };
+	}
 }
 
 void Enemy0::AI(const Vec2& target_pos, const Vec2& target_vel, bool& right, bool& left, bool& attack)

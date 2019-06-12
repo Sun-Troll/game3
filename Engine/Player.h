@@ -11,8 +11,8 @@ public:
 	void MpRegen(float tick_time);
 	void ReciveDamage(int damage);
 	void MpDrain(int mp_drain);
-	void attackTimeAdd(float tick_time);
-	void attackTimeReset();
+	void AttackTimeAdd(float tick_time);
+	void AttackTimeReset();
 	void Draw(Graphics& gfx) const;
 	void DrawHp(Graphics& gfx) const;
 	void DrawMp(Graphics& gfx) const;
