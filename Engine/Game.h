@@ -28,6 +28,7 @@
 #include "Enemy0.h"
 #include "Bomb.h"
 #include "Bullet.h"
+#include "Missile.h"
 
 class Game
 {
@@ -60,5 +61,8 @@ private:
 	static constexpr int bulletNumMax = 1000;
 	int bulletCurrent = 0;
 	Bullet bullet[bulletNumMax];
+	static constexpr int missileNumMax = 4;
+	int missileCurrent = 0;
+	Missile missile[missileNumMax];
 	/********************************/
 };

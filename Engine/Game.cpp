@@ -105,7 +105,20 @@ void Game::UpdateModel()
 				enemy0[i].ClampScreen();
 				enemy0[i].ColorSet();
 				enemy0[i].AttackTimeAdd(tickTime);
-				if (attack && enemy0[i].GetCurAttTime() >= enemy0[i].GetMaxAttTime())
+				if (attack && enemy0[i].GetCurAttTime() >= enemy0[i].GetMaxAttTime() * 100 && enemy0[i].GetStage() == 1)
+				{
+					enemy0[i].AttackTimeReset();
+					missile[missileCurrent].Spawn(enemy0[i].GetMiddleX(), enemy0[i].GetVel());
+					if (missileCurrent < missileNumMax)
+					{
+						++missileCurrent;
+					}
+					else
+					{
+						missileCurrent = 0;
+					}
+				}
+				else if (attack && enemy0[i].GetCurAttTime() >= enemy0[i].GetMaxAttTime())
 				{
 					enemy0[i].AttackTimeReset();
 					bomb[bombCurrent].Spawn(enemy0[i].GetMiddleX(), enemy0[i].GetVel());
@@ -152,6 +165,19 @@ void Game::UpdateModel()
 				}
 			}
 		}
+		for (int i = 0; i < missileNumMax; ++i)
+		{
+			if (missile[i].GetSpawned())
+			{
+				missile[i].Move(tickTime, player0.GetMiddleX());
+				missile[i].ClampScreen();
+				if (missile[i].PlayerHit(player0.GetPos(), player0.GetBottomRight()))
+				{
+					player0.ReciveDamage(missile[i].GetDamage());
+				}
+				missile[i].Despawn(tickTime);
+			}
+		}
 		if (player0.GetHp() <= 0)
 		{
 			gameOver = true;
@@ -180,6 +206,13 @@ void Game::ComposeFrame()
 		if (bomb[i].GetSpawned())
 		{
 			bomb[i].Draw(gfx);
+		}
+	}
+	for (int i = 0; i < missileNumMax; ++i)
+	{
+		if (missile[i].GetSpawned())
+		{
+			missile[i].Draw(gfx);
 		}
 	}
 	for (int i = 0; i < bulletNumMax; ++i)

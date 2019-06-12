@@ -22,6 +22,7 @@ public:
 	int GetHp() const;
 	float GetMaxAttTime() const;
 	float GetCurAttTime() const;
+	int GetStage() const;
 private:
 	static constexpr float maxAttackTime = 0.05f;
 	float currentAttackTime = maxAttackTime;

@@ -164,3 +164,8 @@ float Enemy0::GetCurAttTime() const
 {
 	return currentAttackTime;
 }
+
+int Enemy0::GetStage() const
+{
+	return stage;
+}
